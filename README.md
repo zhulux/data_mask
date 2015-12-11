@@ -23,7 +23,7 @@ Or install it yourself as:
 Write database.yml & task.yml imitated with examples in test/config
 
 ```ruby
-mask = Mask.new('path/with/your/database.yml_&_task.yml') # Default 'config/'
+mask = Mask.new('path/with/your/database.yml_&_tasks.yml') # Default 'config/'
 mask.run
 ```
 
