@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgres
+  encoding: unicode
+  pool: 5
+  host: localhost
+  port: 5432
+  user: cuebyte
+
+from:
+  <<: *default
+  host: localhost
+  database: test_from
+
+to:
+  <<: *default
+  database: test_to

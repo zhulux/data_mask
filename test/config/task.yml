@@ -1,0 +1,9 @@
+users:
+  mobile: 18600000000
+  each:
+    email: '%= row[:id].to_s + "@gmail.com"'
+
+orders:
+  amount: 1024
+  each:
+    credit_id: '%= row[:id].to_s + "2015"'
