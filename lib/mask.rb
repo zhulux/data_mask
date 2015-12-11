@@ -3,13 +3,13 @@ require 'sequel'
 require 'mask/config'
 require 'mask/migrate'
 
-module Mask
-  def self.setup(path = 'config')
+class DataMask
+  def initialize(path = 'config')
     @db_conf = Config.parse(path + '/database.yml')
     @tasks = Config.parse(path + '/task.yml')
   end
 
-  def self.operate_db(op)
+  def operate_db(op)
     Sequel.connect(build_url_without_db(@db_conf[:to])) do |db|
       begin
         db.run("#{op.upcase} DATABASE %{database}" % @db_conf[:to])
@@ -18,15 +18,15 @@ module Mask
     end
   end
 
-  def self.migrate
+  def migrate
     Migrate.send(@db_conf[:to][:adapter], @db_conf[:from], @db_conf[:to])
   end
 
-  def self.play
+  def play
     mask(@db_conf[:to], @tasks)
   end
 
-  def self.run(conf_path = 'config')
+  def run(conf_path = 'config')
     setup(conf_path)
     operate_db('create')
     migrate
