@@ -1,9 +1,9 @@
 require 'test_helper'
 
-describe Mask do
+describe DataMask do
   before(:all) do
-    @db_conf = Config.parse('test/config/database.yml')
-    @tasks = Config.parse('test/config/task.yml')
+    @db_conf = DataMask::Config.parse('test/config/database.yml')
+    @tasks = DataMask::Config.parse('test/config/task.yml')
 
     Sequel.connect("%{adapter}://%{host}:%{port}" % @db_conf[:from]) do |db|
       begin
@@ -13,7 +13,7 @@ describe Mask do
     end
     system("psql test_from < test/test_from.sql")
 
-    Mask::run('test/config')
+    DataMask::Mask.new('test/config').run
   end
 
   after(:all) do
