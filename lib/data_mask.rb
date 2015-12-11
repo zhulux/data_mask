@@ -6,7 +6,7 @@ module DataMask
   class Mask
     def initialize(path = 'config')
       @db_conf = Config.parse(path + '/database.yml')
-      @tasks = Config.parse(path + '/task.yml')
+      @tasks = Config.parse(path + '/tasks.yml')
     end
 
     def operate_db(op)
@@ -57,7 +57,7 @@ module DataMask
       tasks.each do |table, task|
         table = db[table]
         task.each do |key, value|
-          if key == :each
+          if key == :each_row
             value.each do |sub_k, sub_v|
               # Iterate table and update each item
               table.each { |row| table.where(id: row[:id]).update(sub_k => parse_mask(sub_v, binding)) }

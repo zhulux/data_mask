@@ -3,7 +3,7 @@ require 'test_helper'
 describe DataMask do
   before(:all) do
     @db_conf = DataMask::Config.parse('test/config/database.yml')
-    @tasks = DataMask::Config.parse('test/config/task.yml')
+    @tasks = DataMask::Config.parse('test/config/tasks.yml')
 
     Sequel.connect("%{adapter}://%{host}:%{port}" % @db_conf[:from]) do |db|
       begin
