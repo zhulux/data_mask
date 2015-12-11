@@ -25,17 +25,37 @@ Make your `database.yml` & `tasks.yml` imitated with examples in `test/config`
 And use the gem like this:
 
 ```ruby
-mask = Mask.new('path/with/your/database.yml_&_tasks.yml') # Default 'config/'
+mask = DataMask::Mask.new('path/with/your/database.yml_&_tasks.yml') # Default 'config/'
 mask.run
 ```
 
 or
 ```ruby
-mask = Mask.new('path/with/your/database.yml_&_task.yml') # Default 'config/'
+mask = DataMask::Mask.new('path/with/your/database.yml_&_task.yml') # Default 'config/'
 mask.operate_db('create')
 mask.migrate
 mask.play
 ```
+
+In `.yml` files, you can use `%=` for eval the content.
+
+You can also write yml like this: 
+
+```yml
+password: '%= BCrypt::Password.create("123456")'
+```
+
+And what you need to do is only `require 'bcrypt'`.
+
+
+If you need to set each row with different value, you can just use `each_row`, like:
+```yml
+users:
+  mobile: 18600000000
+  each_row:
+    email: '%= row[:id].to_s + "@zhulux.qa"'
+```
+the `row` this the object of each row, which type is Hash.
 
 ## Development
 
