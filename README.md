@@ -20,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-Write database.yml & task.yml imitated with examples in test/config
+Make your `database.yml` & `tasks.yml` imitated with examples in `test/config`
+
+And use the gem like this:
 
 ```ruby
 mask = Mask.new('path/with/your/database.yml_&_tasks.yml') # Default 'config/'
