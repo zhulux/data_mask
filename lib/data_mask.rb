@@ -3,6 +3,7 @@ require 'sequel'
 require 'data_mask/config'
 require 'data_mask/migrate'
 require 'data_mask/export'
+
 module DataMask
   class Mask
     def initialize(path = 'config')

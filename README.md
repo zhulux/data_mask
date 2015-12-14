@@ -38,6 +38,8 @@ mask.migrate
 mask.play
 ```
 
+And you may use `mask.export` to export the database to *.sql* file.
+
 In `.yml` files, you can use `%=` for eval the content.
 
 You can also write yml like this: 
